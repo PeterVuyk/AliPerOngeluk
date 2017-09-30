@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@OrderingBundle/Resources/public/css/ordering.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="pull-right">
+        <p class="bg-info">Contact: pvuyky@gmail.com - <a href="https://github.com/PeterVuyk/AliPerOngeluk" target="_blank">github.com</a></p>
+    </div>
+    <div class="container absolute-center main-content">
+        <div class="text-center">
+            <h1>Waarom <strong>express</strong> wat bestellen als het ook <strong>per ongeluk</strong> kan?</h1>
+            <p class="lead">
+                Vul je gegevens in, maak 10 euro over en ontvang een pakket waar je totaal niets aan hebt.
+            </p>
+        </div>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form_row(form.firstName) }}
+            </div>
+            <div class="form-group col-md-6">
+                {{ form_row(form.lastName) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                {{ form_row(form.streetName) }}
+            </div>
+            <div class="form-group col-md-2">
+                {{ form_row(form.houseNumber) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                {{ form_row(form.postalCode) }}
+            </div>
+            <div class="form-group col-md-5">
+                {{ form_row(form.city) }}
+            </div>
+            <div class="form-group col-md-5">
+                {{ form_row(form.emailAddress) }}
+            </div>
+            <div class="submit-form col-md-12">
+                {{ form_row(form.save) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

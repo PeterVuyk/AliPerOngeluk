@@ -1,0 +1,11 @@
+services:
+    ordering.repository.customer_details_repository:
+        class: OrderingBundle\Repository\CustomerDetailsRepository
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - 'OrderingBundle\Entity\CustomerDetails'
+
+    ordering.service.ordering_service:
+        class: OrderingBundle\Service\OrderingService
+        arguments:
+          - '@ordering.repository.customer_details_repository'

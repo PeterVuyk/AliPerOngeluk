@@ -1,0 +1,3 @@
+ordering:
+    resource: "@OrderingBundle/Resources/config/routing.yml"
+    prefix:   /

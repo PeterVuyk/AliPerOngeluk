@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@OrderingBundle/Resources/public/css/ordering.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="pull-right">
+        <p class="bg-info">Contact: pvuyky@gmail.com - <a href="https://github.com/PeterVuyk/AliPerOngeluk" target="_blank">github.com</a></p>
+    </div>
+    <div class="col-md-10 main-content container absolute-center">
+        <div class="container text-center">
+            <h1>Je hebt <strong>per ongeluk</strong> wat besteld.</h1>
+            <p class="lead">Alleen de betaling nog even voldoen en dan versturen wij je bestelling (per) <strong>express</strong> op.</p>
+            <div class="alert alert-success">
+                <p>Maak de 10 euro t.n.v. <strong>AliPerOngeluk</strong> over naar: <strong>NL71 INGB 0687 2632 39</strong> waarna wij het versturen.</p>
+            </div>
+            <small>— <cite>Ali</cite></small>
+            <div class="img-position"><img src="{{ asset('bundles/ordering/img/present-1.gif') }}" /></div>
+        </div>
+    </div>
+{% endblock %}

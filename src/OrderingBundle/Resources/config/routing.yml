@@ -1,0 +1,9 @@
+ordering_homepage:
+    path:     /
+    defaults: { _controller: OrderingBundle:Ordering:index }
+    methods: [GET|POST]
+
+ordering_success:
+    path:     /success
+    defaults: { _controller: OrderingBundle:Ordering:successPage }
+    methods: [GET]
