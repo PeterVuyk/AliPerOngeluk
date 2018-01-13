@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      # nginx configs
+      - "./etc/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
+      # nginx log
+      - "./../var/logs/nginx:/var/log/nginx"
+      # app
+      - "./..:/var/www/html"
+    container_name: nginx-${NGINX_HOST}
+    ports:
+      - "8001:80"
+      - "3000:443"
+    environment:
+      - NGINX_HOST=${NGINX_HOST}
+    restart: always
+    depends_on:
+      - php
+      - mysqldb
+  php:
+    build:
+      context: "./etc/php"
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    volumes: 
+      - "./etc/php/php.ini:/usr/local/etc/php/php.ini"
+      - "./../../ali-per-ongeluk:/var/www/html"
+    container_name: php-${PHP_VERSION}-${NGINX_HOST}
+    restart: always
+    ports:
+      - "9000"
+  mysqldb:
+    image: mysql:${MYSQL_VERSION}
+    container_name: ${MYSQL_HOST}-${MYSQL_VERSION}
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    restart: always
